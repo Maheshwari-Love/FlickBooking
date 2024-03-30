@@ -3,8 +3,11 @@ const express = require('express');
 const app = express();
 
 const bodyParser = require('body-parser');
-const cors = require('cors');
 const PORT = 3005;
+const cors = require('cors');
+
+app.use(cors());
+app.use(express.json())
 const cookieParser = require('cookie-parser');
 
 const authRoutes = require('./Routes/Auth');
@@ -18,19 +21,6 @@ require('./db')
 
 
 app.use(bodyParser.json());
-const allowedOrigins = ['http://localhost:3000','http://localhost:3001']; // Add more origins as needed
-app.use(
-    cors({
-        origin: function (origin, callback) {
-            if (!origin || allowedOrigins.includes(origin)) {
-                callback(null, true);
-            } else {
-                callback(new Error('Not allowed by CORS'));
-            }
-        },
-        credentials: true, // Allow credentials
-    })
-);
 app.use(cookieParser());
 
 app.use('/auth', authRoutes);

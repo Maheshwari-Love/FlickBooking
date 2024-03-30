@@ -19,7 +19,7 @@ const movieSchema = new mongoose.Schema({
         required: true
     },
     rating: {
-        type: Number,
+        type: String,
         required: true
     },
     genre: {
@@ -27,25 +27,9 @@ const movieSchema = new mongoose.Schema({
         required: true
     },
     duration: {
-        type: Number, // Duration in minutes
+        type: String, // Duration in minutes
         required: true
     },
-    cast: [
-        {
-            celebType : String,
-            celebName : String,
-            celebRole : String,
-            celebImage : String
-        }
-    ],
-    crew: [
-        {
-            celebType : String,
-            celebName : String,
-            celebRole : String,
-            celebImage : String
-        }
-    ]
 });
 
 const Movie = mongoose.model('Movie', movieSchema);
