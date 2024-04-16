@@ -67,10 +67,11 @@ router.post('/login', async (req, res, next) => {
     const refreshToken = jwt.sign({ userId: user._id }, process.env.JWT_REFRESH_SECRET_KEY, { expiresIn: '30m' });
     res.cookie('authToken', authToken,  { httpOnly: true, secure: true, sameSite: 'None' });
     res.cookie('refreshToken', refreshToken, { httpOnly: true, secure: true, sameSite: 'None' });
-
+    let id = user._id
     res.status(200).json(createResponse(true, 'Login successful', {
         authToken,
-        refreshToken
+        refreshToken,
+        id
     }));
 })
 

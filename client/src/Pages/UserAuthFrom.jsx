@@ -110,12 +110,7 @@ const UserAuthForm = ({ type }) => {
   };
 
   return (
-    <div className="h-[calc(100vh-64px)] w-full flex justify-center items-center">
-      <img
-        className="hidden md:flex ml-10 w-3/5 xl:w-1/2 h-[calc(100vh-64px)]"
-        src='https://assets-in.bmscdn.com/iedb/movies/images/mobile/thumbnail/xlarge/crew-2024-et00344265-1709532971.jpg'
-        alt="image"
-      />
+    <div className="h-[calc(100vh-64px)] w-full flex justify-center items-center bg-[#9b1a1a]">
       <div className="flex w-1/2 h-full justify-center items-center">
         <Toaster />
         <form className="w-full">

@@ -7,10 +7,12 @@ import MovieCard from '../component/MovieCard'
 
 const Home = () => {
   return (
+    <div className='bg-[#FFF4EF]'>
     <Layout>
       <HomeSlider/>
-      <MovieCard/>
+      <MovieCard />
     </Layout>
+    </div>
   )
 }
 

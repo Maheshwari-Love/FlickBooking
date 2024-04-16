@@ -9,7 +9,7 @@ const adminSchema = new mongoose.Schema({
     email: {
         type: String,
         required: true,
-        unique: true // Ensure that each admin's email is unique
+        unique: true 
     },
     password: {
         type: String,
@@ -20,15 +20,15 @@ const adminSchema = new mongoose.Schema({
 });
 
 
-adminSchema.pre('save', async function (next) {
-    const admin = this;
+// adminSchema.pre('save', async function (next) {
+//     const admin = this;
 
-    if (admin.isModified('password')) {
-        admin.password = await bcrypt.hash(admin.password, 8);
-    }
+//     if (admin.isModified('password')) {
+//         admin.password = await bcrypt.hash(admin.password, 8);
+//     }
 
-    next();
-});
+//     next();
+// });
 
 const Admin = mongoose.model('Admin', adminSchema);
 

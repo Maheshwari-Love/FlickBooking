@@ -9,7 +9,7 @@ const MovieCard = () => {
 
     return (
         <div>
-            <section className="text-[#13113c] body-font container px-5 py-8 md:py-16 mx-auto">
+            <section className="text-[#9b1a1a] body-font container px-5 py-8 md:py-16 mx-auto bg-[#ffffff]">
                 <div className="flex flex-wrap -m-4">
                     {movies.length ? (
                         movies.map((item, index) => (
@@ -19,9 +19,9 @@ const MovieCard = () => {
                                         <img className="rounded-2xl w-full h-96 p-2" src={item.portraitImgUrl} alt="blog" />
                                     </div>
                                     <div className="p-5">
-                                        <h1 className="title-font text-lg font-medium text-[#13113c] mb-3">{item.title}</h1>
+                                        <h1 className="title-font text-lg font-medium text-[#9b1a1a] mb-3">{item.title}</h1>
                                         <div className="flex justify-center">
-                                            <Link to={'/toMovies'} className="focus:outline-none text-center text-white bg-[#13113c] hover:bg-[#4e4c79] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full py-2">Book</Link>
+                                            <Link to={'/toMovies'} className="focus:outline-none text-center text-white bg-[#9b1a1a] hover:bg-[#e46969] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full py-2">Book</Link>
                                         </div>
                                     </div>
                                 </div>
