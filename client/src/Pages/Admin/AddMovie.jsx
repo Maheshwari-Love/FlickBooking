@@ -19,6 +19,7 @@ function AddMovie() {
         axios.post("http://localhost:3005/movie/createmovie",{title,description,portraitImgUrl,landscapeImgUrl,rating,genre,duration})
         .then(result => {
             console.log(result)
+            window.location.reload();
             navigate('/dashboard')
         })
         .catch(err => console.log(err))

@@ -5,7 +5,7 @@ import myContext from '../../context/myContext';
 
 function UpdateMovie() {
     const {id} = useParams()
-    const {movies} = useContext(myContext);
+    const {movies,setMovies} = useContext(myContext);
     const [title,setTitle] = useState();
     const [description,setDescription] = useState();
     const [portraitImgUrl,setPortraitImgUrl] = useState();
@@ -31,20 +31,29 @@ function UpdateMovie() {
     },[])
     const update = (e) => {
         e.preventDefault();
-        axios.put("http://localhost:3005/movie/updatemovie/"+id,{title,description,portraitImgUrl,landscapeImgUrl,rating,genre,duration})
-        .then(result => {
-            console.log(result)
-            navigate('/dashboard')
-        })
-        .catch(err => console.log(err))
-
+        axios.put(`http://localhost:3005/movie/updatemovie/${id}`, {title, description, portraitImgUrl, landscapeImgUrl, rating, genre, duration})
+            .then(result => {
+                console.log(result);
+                // Update the state by replacing the updated movie
+                setMovies(prevMovies => prevMovies.map(movie => {
+                    if (movie._id === id) {
+                        return {...movie, title, description, portraitImgUrl, landscapeImgUrl, rating, genre, duration};
+                    } else {
+                        return movie;
+                    }
+                }));
+                // Navigate back to the dashboard
+                navigate('/dashboard');
+            })
+            .catch(err => console.log(err));
     }
+    
   return (
     <div className='flex h-[100vh]  justify-center items-center'>
      <div >
             <h2>Update Movie</h2>
             <div>
-                <form className='flex flex-col'>
+            <form className='flex flex-col' onSubmit={update}>
                     <label htmlFor='title'>Title</label>
                     <input type='text' name='title' value={title} placeholder='Enter titlle' onChange={(e) => setTitle(e.target.value) } className='mt-1  text-black border'></input>
                     
@@ -65,7 +74,7 @@ function UpdateMovie() {
                     
                     <label htmlFor='duration'>duration</label>
                     <input type='text' name='duration' placeholder='Enter duration' value={duration} onChange={(e) => setDuration(e.target.value)} className='  text-black border'></input>
-                    <button onClick={update}>Submit</button>
+                    <button>Update</button>
                 </form>
             </div>
         </div>

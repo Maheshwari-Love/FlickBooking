@@ -37,7 +37,7 @@ export default function HomeSlider() {
             movie.map((banner,index)=>{
                 return(
                     <SwiperSlide key={index} className='flex justify-center items-center'>
-                        <img src={banner.landscapeImgUrl} className='w-full h-full' alt="" width={100} height={130} style={{objectFit: "cover"}}/>
+                        <img src={banner.landscapeImgUrl} className='w-full h-[500px]' alt="" style={{objectFit: "cover"}}/>
                     </SwiperSlide>
                 );
             })

@@ -85,7 +85,13 @@ router.post('/login', async (req, res, next) => {
     }
 });
 
-
+router.get('/logout', async (req, res) => {
+    res.clearCookie('adminAuthToken');
+    res.json({
+        ok: true,
+        message: 'User logged out successfully'
+    })
+})
 
 router.get('/checklogin', adminTokenHandler, async (req, res) => {
     res.json({

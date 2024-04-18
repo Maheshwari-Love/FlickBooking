@@ -98,7 +98,7 @@ router.get('/users', async (req,res,next) => {
     }
 })
 
-router.get('/logout', authTokenHandler, async (req, res) => {
+router.get('/logout', async (req, res) => {
     res.clearCookie('authToken');
     res.clearCookie('refreshToken');
     res.json({

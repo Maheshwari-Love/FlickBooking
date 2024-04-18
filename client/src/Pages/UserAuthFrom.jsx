@@ -1,21 +1,26 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useState,useContext } from "react";
+import { useState, useContext } from "react";
 import { Toaster, toast } from "react-hot-toast";
 import InputBox from "../component/InputBox";
-import axios from "axios"
+import axios from "axios";
 import myContext from "../context/myContext";
 const UserAuthForm = ({ type }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
   const navigate = useNavigate();
 
-  const {admins} = useContext(myContext);
-  console.log(admins)
+  const {
+    admins,
+    setIsUserLoggedIn,
+    setIsAdminLoggedIn,
+    isUserLoggedIn,
+    isAdminLoggedIn,
+  } = useContext(myContext);
+  console.log(admins);
   let flag = 0;
 
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; // regex for email
@@ -25,8 +30,6 @@ const UserAuthForm = ({ type }) => {
   };
   console.log(type);
 
-
-
   useEffect(() => {
     setFormData({ email: "", password: "", confirmPassword: "" });
   }, [type]);
@@ -35,11 +38,11 @@ const UserAuthForm = ({ type }) => {
 
     let serverRoute = type === "login" ? "login" : "register";
     const { name, email, password } = formData;
-    localStorage.setItem("user", JSON.stringify({email,password}))
+    localStorage.setItem("user", JSON.stringify({ email, password }));
     for (let index = 0; index < admins.length; index++) {
-      if(email === admins[index].email){
+      if (email === admins[index].email) {
         flag = 1;
-      }   
+      }
     }
     if (!email.length) {
       return toast.error("Email is required");
@@ -66,46 +69,70 @@ const UserAuthForm = ({ type }) => {
       if (formData.confirmPassword !== formData.password) {
         return toast.error("Password and Confirm Password must be same");
       }
-
     }
     if (password.length && email.length) {
       // userAuth(serverRoute, formData);
 
       if (type === "login") {
-          if(flag){
-          axios.post("http://localhost:3005/admin/login",{email,password})
-          .then(result => {
-            console.log(result)
+        if (flag) {
+          axios
+            .post("http://localhost:3005/admin/login", { email, password })
+            .then((result) => {
+              console.log(result);
+              let adminToken = result.data.data.adminAuthToken;
+              localStorage.setItem(
+                  "admin",
+                  JSON.stringify({ email, password, adminToken })
+              );
+              localStorage.setItem("isAdminLoggedIn", true);
+              setIsAdminLoggedIn(true); // Update state immediately after setting localStorage
           })
-          .catch(err => console.log(err))
-        }else{
-          axios.post("http://localhost:3005/auth/login",{email,password})
-          .then(result => {
-            console.log(result)
+          .catch((err) => console.log(err));          
+        } else {
+          axios
+            .post("http://localhost:3005/auth/login", { email, password })
+            .then((result) => {
+              console.log(result.data.data);
+              let authToken = result.data.data.authToken;
+              let refreshToken = result.data.data.refreshToken;
+              localStorage.setItem(
+                  "user",
+                  JSON.stringify({ email, password, authToken, refreshToken })
+              );
+              localStorage.setItem("isUserLoggedIn", true);
+              setIsUserLoggedIn(true); // Update state immediately after setting localStorage
           })
-          .catch(err => console.log(err))
+          .catch((err) => console.log(err));
         }
-          toast.success("Logged in successfully");
-          navigate("/");
-          setFormData({ email: "", password: "" });
-          localStorage.setItem("user", JSON.stringify(formData));
-      
+        toast.success("Logged in successfully");
+        navigate("/");
+        setFormData({ email: "", password: "" });
+        localStorage.setItem("user", JSON.stringify(formData));
       } else {
         if (flag) {
-          axios.post('http://localhost:3005/admin/register',{name,email,password})
-          .then(result => console.log(result))
-          .catch(err => console.log(err))
-        }else{
-        axios.post("http://localhost:3005/auth/register",{name,email,password})
-        .then(result => {
-          console.log(result)
-        })
-        .catch(err => console.log(err))
-      }
+          axios
+            .post("http://localhost:3005/admin/register", {
+              name,
+              email,
+              password,
+            })
+            .then((result) => console.log(result))
+            .catch((err) => console.log(err));
+        } else {
+          axios
+            .post("http://localhost:3005/auth/register", {
+              name,
+              email,
+              password,
+            })
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((err) => console.log(err));
+        }
         toast.success("Registered successfully");
-        navigate('/login')
+        navigate("/login");
       }
-      
     }
   };
 
@@ -125,7 +152,6 @@ const UserAuthForm = ({ type }) => {
                   value={formData.name}
                   name="name"
                   type="text"
-
                   handleChange={handleChange}
                 />
               )}
@@ -151,7 +177,6 @@ const UserAuthForm = ({ type }) => {
                   placeholder="Confirm Password"
                   name="confirmPassword"
                   value={formData.confirmPassword}
-
                   handleChange={handleChange}
                 />
               )}
@@ -165,14 +190,12 @@ const UserAuthForm = ({ type }) => {
                 className="text-[#9f93da] text-xs hover:underline underline-offset-2 rounded-lg ml-2"
                 to={type === "login" ? "/register" : "/login"}
               >
-                {
-                type === "login" ? "Register" : "Login"
-              }
+                {type === "login" ? "Register" : "Login"}
               </Link>
             </div>
 
             <button
-              className ='bg-[#13113c] text-white font-bold text-center rounded-lg w-48 md:w-60 h-10 pl-3'
+              className="bg-[#13113c] text-white font-bold text-center rounded-lg w-48 md:w-60 h-10 pl-3"
               onClick={handleSubmit}
             >
               {type === "login" ? "Login" : "Register"}
