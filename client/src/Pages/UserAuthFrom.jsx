@@ -137,7 +137,7 @@ const UserAuthForm = ({ type }) => {
   };
 
   return (
-    <div className="h-[calc(100vh-64px)] w-full flex justify-center items-center bg-[#9b1a1a]">
+    <div className="h-[calc(100vh)] w-full flex justify-center items-center bg-[#9b1a1a]">
       <div className="flex w-1/2 h-full justify-center items-center">
         <Toaster />
         <form className="w-full">
@@ -183,11 +183,11 @@ const UserAuthForm = ({ type }) => {
             </div>
 
             <div className="bottom mb-2">
-              <a className="text-[#9f93da] text-xs hover:underline underline-offset-2 rounded-lg mr-2">
+              <a className="text-[#3d1414] text-xs hover:underline underline-offset-2 rounded-lg mr-2">
                 forgot password
               </a>
               <Link
-                className="text-[#9f93da] text-xs hover:underline underline-offset-2 rounded-lg ml-2"
+                className="text-[#3d1414] text-xs hover:underline underline-offset-2 rounded-lg ml-2"
                 to={type === "login" ? "/register" : "/login"}
               >
                 {type === "login" ? "Register" : "Login"}
@@ -195,7 +195,7 @@ const UserAuthForm = ({ type }) => {
             </div>
 
             <button
-              className="bg-[#13113c] text-white font-bold text-center rounded-lg w-48 md:w-60 h-10 pl-3"
+              className="bg-[#040101] text-white font-bold text-center rounded-lg w-48 md:w-60 h-10 pl-3"
               onClick={handleSubmit}
             >
               {type === "login" ? "Login" : "Register"}
