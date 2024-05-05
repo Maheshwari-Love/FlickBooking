@@ -1,37 +1,32 @@
-
-const express = require('express');
+const express = require("express");
 const app = express();
 
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const PORT = 3005;
-const cors = require('cors');
+const cors = require("cors");
 
 app.use(cors());
-app.use(express.json())
-const cookieParser = require('cookie-parser');
+app.use(express.json());
+const cookieParser = require("cookie-parser");
 
-const authRoutes = require('./Routes/Auth');
-const adminRoutes = require('./Routes/Admin');
-const movieRoutes = require('./Routes/Movie');
+const authRoutes = require("./Routes/Auth");
+const adminRoutes = require("./Routes/Admin");
+const movieRoutes = require("./Routes/Movie");
 
-
-
-require('dotenv').config();
-require('./db')
-
+require("dotenv").config();
+require("./db");
 
 app.use(bodyParser.json());
 app.use(cookieParser());
 
-app.use('/auth', authRoutes);
-app.use('/admin', adminRoutes);
-app.use('/movie', movieRoutes);
+app.use("/auth", authRoutes);
+app.use("/admin", adminRoutes);
+app.use("/movie", movieRoutes);
 
-
-app.get('/', (req, res) => {
-    res.json({ message: 'The API is working' });
+app.get("/", (req, res) => {
+  res.json({ message: "The API is working" });
 });
 
 app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
