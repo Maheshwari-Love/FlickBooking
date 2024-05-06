@@ -35,13 +35,14 @@ const Navbar = () => {
   
   return (
     <nav className='flex justify-between p-3 items-center text-white font-bold bg-[#9b1a1a]'>
-      <div className='left flex items-center'>
+      <div className='left flex items-center gap-2'>
         <BiSolidCameraMovie size={30} />
+        <h2>Flick Booking</h2>
       </div>
       {!isAdminLoggedIn && !isUserLoggedIn ? (
         <div className='flex justify-center items-center gap-10'>
           <Link to={'/'}>Home</Link>
-          <Link to={'/bookmovie'}>Booked Movies</Link>
+          
           <Link to={'/login'}>Login</Link>
           <Link to={'/'}>
             <BiUserCircle size={30} />
@@ -50,11 +51,9 @@ const Navbar = () => {
       ) : (
         <div className='flex justify-center items-center gap-10'>
           <Link to={'/'}>Home</Link>
-          {isAdminLoggedIn ? (
+          {isAdminLoggedIn && (
             <Link to={'/dashboard'}>Dashboard</Link>
-          ) : (
-            <Link to={'/bookmovie'}>Booked Movies</Link>
-          )}
+          ) }
           <Link onClick={logout}>Logout</Link>
           <Link to={'/'}>
             <BiUserCircle size={30} />

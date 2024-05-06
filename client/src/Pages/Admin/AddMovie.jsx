@@ -38,80 +38,92 @@ function AddMovie() {
       .catch((err) => console.log(err));
   };
   return (
-    <div className="flex h-[100vh] justify-center items-center">
-      <div>
-        <h2>Add Movie</h2>
-        <div>
-          <form className="flex flex-col" onSubmit={submit}>
-            <label htmlFor="title">Title</label>
-            <input
-              type="text"
-              name="title"
-              placeholder="Enter titlle"
-              onChange={(e) => setTitle(e.target.value)}
-              className="mt-1  text-black border"
-            ></input>
 
-            <label htmlFor="desc">DEsc</label>
-            <input
-              type="text"
-              name="desc"
-              placeholder="Enter desc"
-              onChange={(e) => setDescription(e.target.value)}
-              className="  text-black border"
-            ></input>
-
-            <label htmlFor="pimg">Pimg</label>
-            <input
-              type="text"
-              name="pimg"
-              placeholder="Enter desc"
-              onChange={(e) => setPortraitImgUrl(e.target.value)}
-              className="  text-black border"
-            ></input>
-
-            <label htmlFor="Landimg">Landimg</label>
-            <input
-              type="text"
-              name="Landimg"
-              placeholder="Enter desc"
-              onChange={(e) => setLandscapeImgUrl(e.target.value)}
-              className="  text-black border"
-            ></input>
-
-            <label htmlFor="rating">rating</label>
-            <input
-              type="text"
-              name="rating"
-              placeholder="Enter rating"
-              onChange={(e) => setRating(e.target.value)}
-              className="  text-black border"
-            ></input>
-
-            <label htmlFor="genre">genre</label>
-            <input
-              type="text"
-              name="genre"
-              placeholder="Enter genre"
-              onChange={(e) => seTGenre(e.target.value)}
-              className="  text-black border"
-            ></input>
-
-            <label htmlFor="duration">duration</label>
-            <input
-              type="text"
-              name="duration"
-              placeholder="Enter duration"
-              onChange={(e) => setDuration(e.target.value)}
-              className="  text-black border"
-            ></input>
-
-            <button>Submit</button>
-          </form>
-        </div>
+    <div className="flex h-screen justify-center items-center">
+      <div className="bg-white p-8 rounded shadow-lg">
+        <h2 className="text-xl font-bold mb-4">Add Movie</h2>
+        <form className="flex flex-col" onSubmit={submit}>
+          <label htmlFor="title" className="mb-2">Title</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter title"
+            onChange={(e) => setTitle(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <label htmlFor="desc" className="mb-2">Description</label>
+          <input
+            type="text"
+            name="desc"
+            placeholder="Enter description"
+            onChange={(e) => setDescription(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <label htmlFor="pimg" className="mb-2">Portrait Image</label>
+          <input
+            type="text"
+            name="pimg"
+            placeholder="Enter portrait image URL"
+            onChange={(e) => setPortraitImgUrl(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <label htmlFor="Landimg" className="mb-2">Landscape Image</label>
+          <input
+            type="text"
+            name="Landimg"
+            placeholder="Enter landscape image URL"
+            onChange={(e) => setLandscapeImgUrl(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <label htmlFor="rating" className="mb-2">Rating</label>
+          <input
+            type="text"
+            name="rating"
+            placeholder="Enter rating"
+            onChange={(e) => setRating(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <label htmlFor="genre" className="mb-2">Genre</label>
+          <input
+            type="text"
+            name="genre"
+            placeholder="Enter genre"
+            onChange={(e) => seTGenre(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <label htmlFor="duration" className="mb-2">Duration</label>
+          <input
+            type="text"
+            name="duration"
+            placeholder="Enter duration"
+            onChange={(e) => setDuration(e.target.value)}
+            className="border border-gray-300 rounded px-3 py-2 mb-4"
+            required
+          />
+    
+          <button
+            type="submit"
+            className="bg-[#9b1a1a] text-white px-4 py-2 rounded hover:bg-[#b04c4c] transition-colors"
+          >
+            Submit
+          </button>
+        </form>
       </div>
     </div>
-  );
+    
+    );
 }
 
 export default AddMovie;

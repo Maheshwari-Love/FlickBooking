@@ -42,7 +42,7 @@ function MovieLandCard({ movie }) {
   const imageStyle = {
     margin: "5px",
     width: "100%",
-    height: "400px",
+    height: "450px",
     borderRadius: "8px",
   };
 
@@ -56,28 +56,28 @@ function MovieLandCard({ movie }) {
           <div style={imageContainerStyle}>
             <img src={movie[0].portraitImgUrl} alt="poster" style={imageStyle} />
           </div>
-          <div>
-            <h2 className="text-2xl font-semibold mb-4">{movie[0].title}</h2>
+          <div className="font-semibold w-[75%]">
+            <h2 className="text-2xl font-bold mb-4">{movie[0].title}</h2>
             <p className="text-white-600 mb-2">
-              <strong>Genre:</strong> {movie[0].genre}
+              <strong className="text-xl">Genre:</strong> {movie[0].genre}
             </p>
             <div>
               <p className="text-white-600 mb-2">
-                <strong>Rating:</strong> {movie[0].rating}
+                <strong className="text-xl">Rating:</strong> {movie[0].rating}
                 <button className="h-10 w-24 ml-9 bg-red-500 text-white border-none rounded-md text-lg font-bold cursor-pointer">
                   Rate Now
                 </button>
               </p>
             </div>
             <h4>
-              <strong>Available in: </strong>Kannada, English, Hindi, Telegu,
+              <strong className="text-xl mb-2">Available in: </strong>Kannada, English, Hindi, Telegu,
               Tamil
             </h4>
-            <p className="text-white-600 mb-4">
-              <strong>Description:</strong> {movie[0].description}
+            <p className="text-white-600 mb-4 mt-4">
+              <strong className="text-xl">Description:</strong> {movie[0].description}
             </p>
-            <p className="text-white-600 mb-2">
-              <strong>Duration:</strong> {movie[0].duration}
+            <p className="text-white-600 mb-4">
+              <strong className="text-xl">Duration:</strong> {movie[0].duration}
             </p>
             {/* <Link to={/mymovie/${movie[0]._id}} className="bg-red-500 hover:bg-blue-600 text-white py-2 px-4 rounded">
                     Book Tickets

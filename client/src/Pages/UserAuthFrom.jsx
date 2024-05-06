@@ -32,7 +32,7 @@ const UserAuthForm = ({ type }) => {
 
   useEffect(() => {
     setFormData({ email: "", password: "", confirmPassword: "" });
-  }, [type]);
+  }, []);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -183,14 +183,11 @@ const UserAuthForm = ({ type }) => {
             </div>
 
             <div className="bottom mb-2">
-              <a className="text-[#3d1414] text-xs hover:underline underline-offset-2 rounded-lg mr-2">
-                forgot password
-              </a>
               <Link
                 className="text-[#3d1414] text-xs hover:underline underline-offset-2 rounded-lg ml-2"
                 to={type === "login" ? "/register" : "/login"}
               >
-                {type === "login" ? "Register" : "Login"}
+                {type === "login" ? "Don't have account Register" : " already have account Login"}
               </Link>
             </div>
 
