@@ -2,21 +2,32 @@ import React, { useState } from 'react';
 
 const BookMovie = () => {
   const [selectedDate, setSelectedDate] = useState('');
+  const [seat,setSeat] = useState(0);
+  const [total,setTotal] = useState(0);
   const [seats, setSeats] = useState(
-    Array.from({ length: 6}, (_, i) =>
-      Array.from({ length: 10 }, (_, j) => ({ booked: false, selected: false }))
+    Array.from({ length: 3}, (_, i) =>
+      Array.from({ length: 15 }, (_, j) => ({ booked: false, selected: false }))
     )
   );
 
   const toggleSelectSeat = (row, col) => {
     const newSeats = [...seats];
-    newSeats[row][col].selected = !newSeats[row][col].selected;
+    const seatSelected = newSeats[row][col].selected;
+
+    newSeats[row][col].selected = !seatSelected;
     setSeats(newSeats);
+    if (seatSelected) {
+      setSeat(seat - 1);
+      setTotal(total - 150);
+    } else {
+      setSeat(seat + 1);
+      setTotal(total + 150);
+    }
   };
   let count = 1;
 
   return (
-    <div className="flex justify-center">
+    <div className="mr-[32rem] mt-4 mb-4">
       <div className="max-w-md mx-auto">
         <h2 className="text-xl font-bold mb-4">Book Your Seats</h2>
         <div className="mb-4">
@@ -57,6 +68,10 @@ const BookMovie = () => {
               )}
             </div>
           ))}
+        </div>
+        <div>
+          <h3>Seat booked: {seat}</h3>
+          <h3>Total Amount: {total}</h3>
         </div>
       </div>
     </div>

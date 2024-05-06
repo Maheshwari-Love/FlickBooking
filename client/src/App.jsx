@@ -6,6 +6,7 @@ import MyState from "./context/myState";
 import BookMovie from "./Pages/BookMovie";
 import Dashboard from "./Pages/Admin/Dashboard";
 import UserAuthForm from "./Pages/UserAuthFrom";
+import MovieInfo from "./Pages/MovieInfo";
 function App() {
   return (
   <MyState>
@@ -17,6 +18,7 @@ function App() {
       <Route path="/addmovie" element={<AddMovie/>}/> 
       <Route path="/updatemovie/:id" element={<UpdateMovie/>}/> 
       <Route path="/bookmovie" element={<BookMovie/>}/> 
+      <Route path="/toMovies/:id" element={<MovieInfo/>}/>
     </Routes>
   </MyState>
   )

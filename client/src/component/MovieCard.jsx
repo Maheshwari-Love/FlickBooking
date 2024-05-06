@@ -21,7 +21,7 @@ const MovieCard = () => {
                                     <div className="p-5">
                                         <h1 className="title-font text-lg font-medium text-[#9b1a1a] mb-3">{item.title}</h1>
                                         <div className="flex justify-center">
-                                            <Link to={'/toMovies'} className="focus:outline-none text-center text-white bg-[#9b1a1a] hover:bg-[#e46969] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full py-2">Book</Link>
+                                            <Link to={`/toMovies/${item._id}`} className="focus:outline-none text-center text-white bg-[#9b1a1a] hover:bg-[#e46969] focus:ring-4 focus:ring-purple-300 font-medium rounded-lg text-sm w-full py-2">Book</Link>
                                         </div>
                                     </div>
                                 </div>
